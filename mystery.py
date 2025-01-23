@@ -1,4 +1,10 @@
 import os
+import subprocess
 
-for name in os.listdir('names'):
-    print(name.strip('.txt'))
+for name in reversed(os.listdir('sus_folder')):
+    result = subprocess.run(["python", os.path.join('sus_folder', name)], capture_output=True, text=True).stdout
+    if result is "":
+        result = f"script failed :("
+    print(f'Name: {name}')
+    print(f'Result: {result}')
+    print('\n')
